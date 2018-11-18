@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
-import Home from '../home/Home';
+import HomeContainer from '../home/HomeContainer';
 
 const Main = () => (
   <Fragment>
-    <Route exact path="/" component={Home} />{' '}
+    <Route exact path="/" component={HomeContainer} />{' '}
     {/* <Route path="/about" component={About} /> */}
   </Fragment>
 );
