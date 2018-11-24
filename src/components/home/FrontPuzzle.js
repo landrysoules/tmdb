@@ -11,6 +11,7 @@ const FrontPuzzle = ({ movies, series }) => {
           <div style={{ textAlign: 'center' }}>
             <div className="puzzle">
               <div className="image-container">
+                <div className="image-text">{series[0].name}</div>
                 <img
                   src={`${largeImageUrl}${series[0].backdrop_path}`}
                   alt="placeholder"
