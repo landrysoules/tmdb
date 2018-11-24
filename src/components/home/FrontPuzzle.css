@@ -1,3 +1,7 @@
 .image-container {
   line-height: 0px;
 }
+
+.puzzle {
+  display: inline-block;
+}

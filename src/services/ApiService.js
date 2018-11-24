@@ -9,4 +9,10 @@ const fetchPlayingNowMovies = () => {
   );
 };
 
-export { fetchPlayingNowMovies };
+const fetchPlayingNowSeries = () => {
+  return axios.get(
+    `${TMDB_URL}tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1`
+  );
+};
+
+export { fetchPlayingNowMovies, fetchPlayingNowSeries };

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { fetchPlayingNowMovies } from '../../services/ApiService';
+import {
+  fetchPlayingNowMovies,
+  fetchPlayingNowSeries,
+} from '../../services/ApiService';
 import Home from './Home';
 
 class HomeContainer extends Component {
@@ -7,6 +10,7 @@ class HomeContainer extends Component {
     super(props);
     this.state = {
       playingNowMovies: [],
+      playingNowSeries: [],
     };
   }
 
@@ -15,11 +19,23 @@ class HomeContainer extends Component {
       console.warn('results', response.data.results);
       this.setState({ playingNowMovies: response.data.results });
     });
+    fetchPlayingNowSeries().then(response => {
+      console.warn('results', response.data.results);
+      this.setState({ playingNowSeries: response.data.results });
+    });
   }
 
   render() {
-    if (this.state.playingNowMovies.length > 0) {
-      return <Home movies={this.state.playingNowMovies} />;
+    if (
+      this.state.playingNowMovies.length > 0 &&
+      this.state.playingNowSeries.length > 0
+    ) {
+      return (
+        <Home
+          movies={this.state.playingNowMovies}
+          series={this.state.playingNowSeries}
+        />
+      );
     }
     return null;
   }
