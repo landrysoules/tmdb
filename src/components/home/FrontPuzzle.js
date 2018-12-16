@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './FrontPuzzle.css';
- 
+
 const FrontPuzzle = ({ movies, series }) => {
   const largeImageUrl = 'https://image.tmdb.org/t/p/w500/';
   const smallImageUrl = 'https://image.tmdb.org/t/p/w300/';
@@ -49,22 +49,26 @@ const FrontPuzzle = ({ movies, series }) => {
                     width="250px"
                   />
                 </Link>
-                <div className="image-text-right">
-                  {movies[2].original_title}
-                </div>
-                <img
-                  src={`${smallImageUrl}${movies[2].backdrop_path}`}
-                  alt="placeholder"
-                  width="250px"
-                />
+                <Link to={`/movies/${movies[2].id}`}>
+                  <div className="image-text-right">
+                    {movies[2].original_title}
+                  </div>
+                  <img
+                    src={`${smallImageUrl}${movies[2].backdrop_path}`}
+                    alt="placeholder"
+                    width="250px"
+                  />
+                </Link>
               </div>
               <div className="image-container">
-                <div className="image-text">{movies[0].original_title}</div>
-                <img
-                  src={`${largeImageUrl}${movies[0].backdrop_path}`}
-                  alt="placeholder"
-                  width="500px"
-                />
+                <Link to={`/movies/${movies[0].id}`}>
+                  <div className="image-text">{movies[0].original_title}</div>
+                  <img
+                    src={`${largeImageUrl}${movies[0].backdrop_path}`}
+                    alt="placeholder"
+                    width="500px"
+                  />
+                </Link>
               </div>
             </div>
           </div>

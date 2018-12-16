@@ -1,0 +1,8 @@
+/* Trick to apply filter only to background : https://css-tricks.com/apply-a-filter-to-a-background-image/ */
+.title-banner {
+    position: relative;
+}
+
+.title-banner-front {
+    position: relative;
+}

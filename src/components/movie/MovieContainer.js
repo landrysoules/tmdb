@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import { fetchMovie } from '../../services/ApiService';
+import TitleBanner from '../movie/TitleBanner';
 
 // class MovieContainer extends Component {
 //   constructor(props) {
@@ -41,13 +42,7 @@ const MovieContainer = ({ match }) => {
     [] // Highly important, without [], fetch would execute forever !!
   );
 
-  return (
-    <div className="section">
-      <div className="container">
-        <h2>{movie.original_title}</h2>
-      </div>
-    </div>
-  );
+  return <TitleBanner movie={movie} />;
 };
 
 export default MovieContainer;
