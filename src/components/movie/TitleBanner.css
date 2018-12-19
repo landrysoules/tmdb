@@ -6,3 +6,7 @@
 .title-banner-front {
     position: relative;
 }
+
+.movie-content {
+    color: white !important;
+}

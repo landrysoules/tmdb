@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import { fetchMovie } from '../../services/ApiService';
+import { fetchMovie, fetchCredits } from '../../services/ApiService';
 import TitleBanner from '../movie/TitleBanner';
 
 // class MovieContainer extends Component {
@@ -28,12 +28,13 @@ import TitleBanner from '../movie/TitleBanner';
 
 const MovieContainer = ({ match }) => {
   const [movie, setMovie] = useState({});
+  const [credits, setCredits] = useState({});
   useEffect(
     () => {
       fetchMovie(match.params.id)
         .then(response => {
+          response.data.releaseYear = response.data.release_date.split('-')[0];
           setMovie(response.data);
-          console.info(response.data);
         })
         .catch(error => {
           console.error(error);
@@ -42,7 +43,20 @@ const MovieContainer = ({ match }) => {
     [] // Highly important, without [], fetch would execute forever !!
   );
 
-  return <TitleBanner movie={movie} />;
+  useEffect(
+    () => {
+      fetchCredits(match.params.id)
+        .then(response => {
+          setCredits(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    [] // Highly important, without [], fetch would execute forever !!
+  );
+
+  return <TitleBanner movie={movie} credits={credits} />;
 };
 
 export default MovieContainer;

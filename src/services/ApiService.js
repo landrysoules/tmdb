@@ -21,4 +21,15 @@ const fetchMovie = id => {
   );
 };
 
-export { fetchPlayingNowMovies, fetchPlayingNowSeries, fetchMovie };
+const fetchCredits = movieId => {
+  return axios.get(
+    `${TMDB_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=en-US&page=1`
+  );
+};
+
+export {
+  fetchPlayingNowMovies,
+  fetchPlayingNowSeries,
+  fetchMovie,
+  fetchCredits,
+};
