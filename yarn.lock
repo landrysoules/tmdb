@@ -8379,6 +8379,14 @@ react-cosmos-playground@^4.6.4:
   resolved "https://registry.yarnpkg.com/react-cosmos-playground/-/react-cosmos-playground-4.6.4.tgz#8298501995e7004e24af96960734b35c7a96c115"
   integrity sha1-gphQGZXnAE4kr5aWBzSzXHqWwRU=
 
+react-cosmos-router-proxy@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/react-cosmos-router-proxy/-/react-cosmos-router-proxy-4.6.1.tgz#40d0ea8d116ed5aa80ddc840fb681a0b62e760e7"
+  integrity sha1-QNDqjRFu1aqA3chA+2gaC2LnYOc=
+  dependencies:
+    react-cosmos-shared "^4.6.1"
+    url "^0.11.0"
+
 react-cosmos-shared@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/react-cosmos-shared/-/react-cosmos-shared-4.6.1.tgz#deacaaaa69b79b408a6c0931597badb17e36ec95"

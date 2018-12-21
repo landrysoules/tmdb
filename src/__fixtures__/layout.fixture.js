@@ -22,6 +22,7 @@ export default [
   },
   {
     component: FrontPuzzle,
+    url: '/about',
     props: {
       movies: [
         {
