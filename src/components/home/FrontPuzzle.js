@@ -24,7 +24,7 @@ const FrontPuzzle = ({ movies, series }) => {
                 />
               </div>
               <div className="image-container">
-                <div className="image-text">{series[1].name}</div>
+                <div className="image-text-left">{series[1].name}</div>
 
                 <img
                   src={`${smallImageUrl}${series[1].backdrop_path}`}
@@ -42,7 +42,9 @@ const FrontPuzzle = ({ movies, series }) => {
             <div className="puzzle">
               <div className="image-container">
                 <Link to={`/movies/${movies[1].id}`}>
-                  <div className="image-text">{movies[1].original_title}</div>
+                  <div className="image-text-left">
+                    {movies[1].original_title}
+                  </div>
                   <img
                     src={`${smallImageUrl}${movies[1].backdrop_path}`}
                     alt="placeholder"

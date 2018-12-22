@@ -1,6 +1,9 @@
 import React from 'react';
-import './TitleBanner.css';
+import CircularProgressbar from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import Style from 'style-it';
+
+import './TitleBanner.css';
 
 const TitleBanner = ({ movie, credits }) => {
   console.debug('movie', movie);
@@ -45,12 +48,38 @@ const TitleBanner = ({ movie, credits }) => {
                   <h2 className="title is-2 movie-content">
                     {movie.original_title} ({movie.releaseYear})
                   </h2>
+                  <nav className="level">
+                    <div className="level-left">
+                      <div className="level-item">
+                        <div style={{ width: '60px' }}>
+                          <CircularProgressbar
+                            percentage={movie.vote_average * 10}
+                            text={`${movie.vote_average * 10}%`}
+                            background
+                            backgroundPadding={6}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div>User</div>
+                        <br />
+                        <div>score</div>
+                      </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                      <div>
+                        <p class="heading">Tweets</p>
+                        <p class="title">3,456</p>
+                      </div>
+                    </div>
+                  </nav>
                   <div>
-                    Overview
+                    <h5 className="title is-5 movie-content">Overview</h5>
+
                     <p>{movie.overview}</p>
                   </div>
                   <div>
-                    Featured crew
+                    <h5 className="title is-5 movie-content">Featured crew</h5>
                     <p>{credits.crew[0].name}</p>
                     <p>{credits.crew[0].job}</p>
                   </div>
