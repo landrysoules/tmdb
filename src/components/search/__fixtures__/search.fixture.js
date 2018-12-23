@@ -1,4 +1,5 @@
 import SearchResultDropDownLine from '../SearchResultDropDownLine';
+import SearchField from '../SearchField';
 export default [
   {
     component: SearchResultDropDownLine,
@@ -90,5 +91,33 @@ export default [
         adult: false,
       },
     },
+  },
+  {
+    component: SearchResultDropDownLine,
+    name: 'tv',
+    props: {
+      result: {
+        original_name: 'Modern Family',
+        id: 1421,
+        media_type: 'tv',
+        name: 'Modern Family',
+        vote_count: 744,
+        vote_average: 7.29,
+        poster_path: '/gLAcu4VPCAb90oJvJ4nUJc5ZBQi.jpg',
+        first_air_date: '2009-09-23',
+        popularity: 46.708,
+        genre_ids: [35],
+        original_language: 'en',
+        backdrop_path: '/snxFgPvHMcpW5f8Q3wu6uRRycww.jpg',
+        overview:
+          'The Pritchett-Dunphy-Tucker clan is a wonderfully large and blended family. They give us an honest and often hilarious look into the sometimes warm, sometimes twisted, embrace of the modern family.',
+        origin_country: ['US'],
+      },
+    },
+  },
+  {
+    component: SearchField,
+    name: 'empty',
+    props: {},
   },
 ];
