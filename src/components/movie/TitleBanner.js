@@ -66,10 +66,10 @@ const TitleBanner = ({ movie, credits }) => {
                         <div>score</div>
                       </div>
                     </div>
-                    <div class="level-item has-text-centered">
+                    <div className="level-item has-text-centered">
                       <div>
-                        <p class="heading">Tweets</p>
-                        <p class="title">3,456</p>
+                        {/* <p class="heading">Tweets</p>
+                        <p class="title">3,456</p> */}
                       </div>
                     </div>
                   </nav>

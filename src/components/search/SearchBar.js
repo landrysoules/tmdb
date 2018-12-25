@@ -6,6 +6,7 @@ import './SearchBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import SearchResultsDropDown from './SearchResultsDropDown';
+import SearchField from './SearchField';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class SearchBar extends Component {
 
     this.state = { value: '' };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this); // FIXME: Check if this is needed
   }
 
   getInitialState() {
@@ -38,7 +39,7 @@ class SearchBar extends Component {
         },
       })
       .then(data => {
-        return { options: data.data.results };
+        this.setState({ results: data.data.results });
       });
   }
 
@@ -62,38 +63,6 @@ class SearchBar extends Component {
     }
   }
 
-  renderOption(option) {
-    let mediaName;
-    let icon;
-    switch (option.media_type) {
-      case 'movie':
-        mediaName = option.original_title;
-        icon = 'film';
-        break;
-
-      case 'tv':
-        mediaName = option.original_name;
-        icon = 'tv';
-        break;
-
-      case 'person':
-        mediaName = option.name;
-        icon = 'user';
-        break;
-
-      default:
-        break;
-    }
-    return (
-      <div>
-        <span>{mediaName}</span>
-        <span className="movie-type">
-          <FontAwesomeIcon icon={icon} />
-        </span>
-      </div>
-    );
-  }
-
   renderInput() {
     return <input type="text" />;
   }
@@ -104,38 +73,20 @@ class SearchBar extends Component {
 
   handleChange(event) {
     this.setState({ value: event.target.value });
-    console.debug({ value: event.target.value });
+    console.debug('Char saisi', event.target.value);
     this.getResults(event.target.value);
-  }
-
-  filterOptions(options, filter, currentValues) {
-    // For now, we just manage movies and tv, in the future, I hope I'll find time
-    // to add persons and all other media_types To disable filtering, juste return
-    // options
-    return options.filter(option => {
-      return (
-        option.media_type === 'movie' ||
-        option.media_type === 'tv' ||
-        option.media_type === 'person'
-      );
-    });
-    // return options;
   }
 
   render() {
     return (
-      // <section className="section">
       <div className="container">
         <div className="field">
-          <p className="control has-icons-left">
-            <input className="input" type="text" placeholder="Search" />
-            <span className="icon is-small is-left">
-              <SearchResultsDropDown />
-            </span>
-          </p>
+          <div className="control has-icons-left">
+            <SearchField handleChange={this.handleChange} />
+            <SearchResultsDropDown results={this.state.results} />
+          </div>
         </div>
       </div>
-      // </section>
     );
   }
 }

@@ -33,11 +33,10 @@ const getTitle = result => {
 };
 
 const SearchResultDropDownLine = ({ result }) => {
-  console.debug(getIcon(result.media_type));
-  const title = '';
   return (
     <div>
       {getIcon(result.media_type)}
+      &nbsp;
       {getTitle(result)}
     </div>
   );
