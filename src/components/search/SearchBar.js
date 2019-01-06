@@ -7,18 +7,54 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import SearchResultsDropDown from './SearchResultsDropDown';
 import SearchField from './SearchField';
+import Autosuggest from 'react-autosuggest';
 
 class SearchBar extends Component {
   constructor(props) {
     super();
 
-    this.state = { value: '' };
+    this.state = {
+      value: '',
+      suggestions: [],
+    };
 
     this.handleChange = this.handleChange.bind(this); // FIXME: Check if this is needed
+    this.onChange = this.onChange.bind(this);
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(
+      this
+    );
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(
+      this
+    );
+    this.getSuggestionValue = this.getSuggestionValue.bind(this);
+    this.renderSuggestion = this.renderSuggestion.bind(this);
   }
 
   getInitialState() {
     return { backspaceRemoves: true, multi: true, creatable: false };
+  }
+
+  getSuggestionValue(suggestion) {
+    return suggestion.value;
+  }
+
+  // Teach Autosuggest how to calculate suggestions for any given input value.
+  getSuggestions(value) {
+    console.debug('valuetrim', value);
+    const inputValue = value.value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0 ? [] : this.getResults(value.value);
+  }
+
+  // When suggestion is clicked, Autosuggest needs to populate the input
+  // based on the clicked suggestion. Teach Autosuggest how to calculate the
+  // input value for every given suggestion.
+  //  getSuggestionValue ( suggestion  suggestion.name;
+
+  // Use your imagination to render suggestions.
+  renderSuggestion(suggestion) {
+    return <div>{suggestion.media_type}</div>;
   }
 
   onChange(value) {
@@ -26,6 +62,22 @@ class SearchBar extends Component {
     if (value) {
       this.gotoMedia(value);
     }
+  }
+
+  // Autosuggest will call this function every time you need to update suggestions.
+  // You already implemented this logic above, so just use it.
+  onSuggestionsFetchRequested(value) {
+    // this.setState({
+    //   suggestions: this.getSuggestions(value),
+    // });
+    this.getSuggestions(value);
+  }
+
+  // Autosuggest will call this function every time you need to clear suggestions.
+  onSuggestionsClearRequested() {
+    this.setState({
+      suggestions: [],
+    });
   }
 
   getResults(input) {
@@ -39,7 +91,8 @@ class SearchBar extends Component {
         },
       })
       .then(data => {
-        this.setState({ results: data.data.results });
+        this.setState({ suggestions: data.data.results });
+        console.debug('suggestions', this.state.suggestions);
       });
   }
 
@@ -78,12 +131,25 @@ class SearchBar extends Component {
   }
 
   render() {
+    const inputProps = {
+      placeholder: 'Type a programming language',
+      value: this.state.value,
+      onChange: this.handleChange,
+    };
     return (
       <div className="container">
         <div className="field">
           <div className="control has-icons-left">
-            <SearchField handleChange={this.handleChange} />
-            <SearchResultsDropDown results={this.state.results} />
+            {/* <SearchField handleChange={this.handleChange} />
+            <SearchResultsDropDown results={this.state.results} /> */}
+            <Autosuggest
+              suggestions={this.state.suggestions}
+              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+              getSuggestionValue={this.getSuggestionValue}
+              renderSuggestion={this.renderSuggestion}
+              inputProps={inputProps}
+            />
           </div>
         </div>
       </div>
