@@ -4,10 +4,14 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import './SearchBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilm } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faTv } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import SearchResultsDropDown from './SearchResultsDropDown';
 import SearchField from './SearchField';
 import Autosuggest from 'react-autosuggest';
+import { Redirect } from 'react-router';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -28,6 +32,7 @@ class SearchBar extends Component {
     );
     this.getSuggestionValue = this.getSuggestionValue.bind(this);
     this.renderSuggestion = this.renderSuggestion.bind(this);
+    this.suggestionSelected = this.suggestionSelected.bind(this);
   }
 
   getInitialState() {
@@ -54,7 +59,45 @@ class SearchBar extends Component {
 
   // Use your imagination to render suggestions.
   renderSuggestion(suggestion) {
-    return <div>{suggestion.media_type}</div>;
+    let displayedSuggestion = '';
+    const icon = this.getIcon(suggestion.media_type);
+    switch (suggestion.media_type) {
+      case 'tv':
+        displayedSuggestion = suggestion.original_name;
+        break;
+      case 'person':
+        displayedSuggestion = suggestion.name;
+        break;
+      default:
+        //movie
+        displayedSuggestion = suggestion.original_title;
+        break;
+    }
+    return (
+      <div>
+        {icon}
+        <span className="suggestion-title">{displayedSuggestion}</span>
+      </div>
+    );
+  }
+
+  suggestionSelected(event, config) {
+    console.debug('suggestionSelected', config.suggestion);
+    this.setState({ selected: config.suggestion });
+  }
+
+  getIcon(type) {
+    switch (type) {
+      case 'movie':
+        return <FontAwesomeIcon icon={faFilm} />;
+      case 'person':
+        return <FontAwesomeIcon icon={faUser} />;
+      case 'tv':
+        return <FontAwesomeIcon icon={faTv} />;
+      default:
+        break;
+    }
+    return null;
   }
 
   onChange(value) {
@@ -124,36 +167,48 @@ class SearchBar extends Component {
     return null;
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-    console.debug('Char saisi', event.target.value);
-    this.getResults(event.target.value);
+  handleChange(event, config) {
+    console.debug('Char saisi', config.newValue);
+    if (config.newValue) {
+      this.setState({ value: config.newValue });
+      this.getResults(config.newValue);
+    }
   }
 
   render() {
     const inputProps = {
-      placeholder: 'Type a programming language',
+      placeholder: 'Search for a movie, tv show, person...',
       value: this.state.value,
       onChange: this.handleChange,
     };
-    return (
-      <div className="container">
-        <div className="field">
-          <div className="control has-icons-left">
-            {/* <SearchField handleChange={this.handleChange} />
-            <SearchResultsDropDown results={this.state.results} /> */}
-            <Autosuggest
-              suggestions={this.state.suggestions}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              getSuggestionValue={this.getSuggestionValue}
-              renderSuggestion={this.renderSuggestion}
-              inputProps={inputProps}
-            />
+    const redirect = this.state.selected ? (
+      <Redirect to={`/movies/${this.state.selected.id}`} />
+    ) : null;
+
+    const toRender = (
+      <>
+        {redirect}
+        <div className="container">
+          <div className="field">
+            <div className="control has-icons-left">
+              <Autosuggest
+                suggestions={this.state.suggestions}
+                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                getSuggestionValue={this.getSuggestionValue}
+                renderSuggestion={this.renderSuggestion}
+                onSuggestionSelected={this.suggestionSelected}
+                inputProps={inputProps}
+              />
+              <span className="icon is-small is-left">
+                <FontAwesomeIcon icon={faSearch} />
+              </span>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
+    return toRender;
   }
 }
 // Here I have to use withRouter, since Autocomplete is not rendered by RR
