@@ -1,0 +1,32 @@
+/* Trick to apply filter only to background : https://css-tricks.com/apply-a-filter-to-a-background-image/ */
+.title-banner {
+    position: relative;
+}
+
+.title-banner-front {
+    position: relative;
+}
+
+.movie-content {
+    color: white !important;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+    font-size: 25px;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+    stroke: #21d07a;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+    stroke: #204529;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+    fill: #fff;
+}
+
+.CircularProgressbar .CircularProgressbar-background {
+    fill: #081c22;
+}

@@ -80,7 +80,17 @@ class SearchBar extends Component {
   suggestionSelected(event, config) {
     console.debug('suggestionSelected', config.suggestion);
     this.setState({ selected: config.suggestion, value: '' }, function() {
-      this.props.history.push(`/movies/${this.state.selected.id}`);
+      let path = 'movies';
+      switch (config.suggestion.media_type) {
+        case 'tv':
+          path = 'tv';
+          break;
+        case 'person':
+          path = 'person';
+        default:
+          break;
+      }
+      this.props.history.push(`/${path}/${this.state.selected.id}`);
     });
   }
 
@@ -112,6 +122,7 @@ class SearchBar extends Component {
   }
 
   getResults(input) {
+    //TODO: move this to API Service
     if (!input) {
       return Promise.resolve({ options: [] });
     }

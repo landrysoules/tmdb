@@ -21,9 +21,21 @@ const fetchMovie = id => {
   );
 };
 
+const fetchTV = id => {
+  return axios.get(
+    `${TMDB_URL}tv/${id}?api_key=${API_KEY}&language=en-US&page=1`
+  );
+};
+
 const fetchCredits = movieId => {
   return axios.get(
     `${TMDB_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=en-US&page=1`
+  );
+};
+
+const fetchTVCredits = id => {
+  return axios.get(
+    `${TMDB_URL}tv/${id}/credits?api_key=${API_KEY}&language=en-US&page=1`
   );
 };
 
@@ -31,5 +43,7 @@ export {
   fetchPlayingNowMovies,
   fetchPlayingNowSeries,
   fetchMovie,
+  fetchTV,
   fetchCredits,
+  fetchTVCredits,
 };
