@@ -19,19 +19,31 @@ import TitleBanner from '../movie/TitleBanner';
 //       .catch(error => {
 //         console.error(error);
 //       });
+
+//     fetchCredits(this.props.match.params.id)
+//       .then(response => {
+//         this.setState({ credits: response.data });
+//       })
+//       .catch(error => {
+//         console.error(error);
+//       });
 //   }
 
 //   render() {
-//     return <h1>{this.state.movie.original_title}</h1>;
+//     if (this.state.movie && this.state.credits) {
+//       return (
+//         <TitleBanner movie={this.state.movie} credits={this.state.credits} />
+//       );
+//     } else return null;
 //   }
 // }
 
-const MovieContainer = ({ match }) => {
+const MovieContainer = props => {
   const [movie, setMovie] = useState({});
   const [credits, setCredits] = useState({});
   useEffect(
     () => {
-      fetchMovie(match.params.id)
+      fetchMovie(props.match.params.id)
         .then(response => {
           response.data.releaseYear = response.data.release_date.split('-')[0];
           setMovie(response.data);
@@ -45,7 +57,7 @@ const MovieContainer = ({ match }) => {
 
   useEffect(
     () => {
-      fetchCredits(match.params.id)
+      fetchCredits(props.match.params.id)
         .then(response => {
           setCredits(response.data);
         })

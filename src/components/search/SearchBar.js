@@ -23,7 +23,7 @@ class SearchBar extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this); // FIXME: Check if this is needed
-    this.onChange = this.onChange.bind(this);
+    // this.onChange = this.onChange.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(
       this
     );
@@ -100,12 +100,12 @@ class SearchBar extends Component {
     return null;
   }
 
-  onChange(value) {
-    this.setState({ value: value });
-    if (value) {
-      this.gotoMedia(value);
-    }
-  }
+  // onChange(value) {
+  //   this.setState({ value: value });
+  //   if (value) {
+  //     this.gotoMedia(value);
+  //   }
+  // }
 
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
@@ -139,25 +139,25 @@ class SearchBar extends Component {
       });
   }
 
-  gotoMedia(value, event) {
-    if (value.media_type === 'movie') {
-      this.props.displayMovie(value.id);
-      this.props.history.push(`/movie/${value.id}`);
-      this.setState({ value: '' });
-    } else {
-      if (value.media_type === 'tv') {
-        this.props.displayTV(value.id);
-        this.props.history.push(`/tv/${value.id}`);
-        this.setState({ value: '' });
-      } else {
-        if (value.media_type === 'person') {
-          this.props.displayPerson(value.id);
-          this.props.history.push(`/person/${value.id}`);
-          this.setState({ value: '' });
-        }
-      }
-    }
-  }
+  // gotoMedia(value, event) {
+  //   if (value.media_type === 'movie') {
+  //     this.props.displayMovie(value.id);
+  //     this.props.history.push(`/movie/${value.id}`);
+  //     this.setState({ value: '' });
+  //   } else {
+  //     if (value.media_type === 'tv') {
+  //       this.props.displayTV(value.id);
+  //       this.props.history.push(`/tv/${value.id}`);
+  //       this.setState({ value: '' });
+  //     } else {
+  //       if (value.media_type === 'person') {
+  //         this.props.displayPerson(value.id);
+  //         this.props.history.push(`/person/${value.id}`);
+  //         this.setState({ value: '' });
+  //       }
+  //     }
+  //   }
+  // }
 
   renderInput() {
     return <input type="text" />;
