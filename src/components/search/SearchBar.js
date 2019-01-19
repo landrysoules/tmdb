@@ -8,22 +8,18 @@ import { faFilm } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faTv } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import SearchResultsDropDown from './SearchResultsDropDown';
-import SearchField from './SearchField';
 import Autosuggest from 'react-autosuggest';
-import { Redirect } from 'react-router';
 
 class SearchBar extends Component {
   constructor(props) {
-    super();
-
+    super(props);
+    console.warn('SearchBar props: ', props);
     this.state = {
       value: '',
       suggestions: [],
     };
 
     this.handleChange = this.handleChange.bind(this); // FIXME: Check if this is needed
-    // this.onChange = this.onChange.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(
       this
     );
@@ -83,7 +79,9 @@ class SearchBar extends Component {
 
   suggestionSelected(event, config) {
     console.debug('suggestionSelected', config.suggestion);
-    this.setState({ selected: config.suggestion });
+    this.setState({ selected: config.suggestion }, function() {
+      this.props.history.push(`/movies/${this.state.selected.id}`);
+    });
   }
 
   getIcon(type) {
@@ -100,19 +98,9 @@ class SearchBar extends Component {
     return null;
   }
 
-  // onChange(value) {
-  //   this.setState({ value: value });
-  //   if (value) {
-  //     this.gotoMedia(value);
-  //   }
-  // }
-
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
   onSuggestionsFetchRequested(value) {
-    // this.setState({
-    //   suggestions: this.getSuggestions(value),
-    // });
     this.getSuggestions(value);
   }
 
@@ -139,26 +127,6 @@ class SearchBar extends Component {
       });
   }
 
-  // gotoMedia(value, event) {
-  //   if (value.media_type === 'movie') {
-  //     this.props.displayMovie(value.id);
-  //     this.props.history.push(`/movie/${value.id}`);
-  //     this.setState({ value: '' });
-  //   } else {
-  //     if (value.media_type === 'tv') {
-  //       this.props.displayTV(value.id);
-  //       this.props.history.push(`/tv/${value.id}`);
-  //       this.setState({ value: '' });
-  //     } else {
-  //       if (value.media_type === 'person') {
-  //         this.props.displayPerson(value.id);
-  //         this.props.history.push(`/person/${value.id}`);
-  //         this.setState({ value: '' });
-  //       }
-  //     }
-  //   }
-  // }
-
   renderInput() {
     return <input type="text" />;
   }
@@ -181,13 +149,9 @@ class SearchBar extends Component {
       value: this.state.value,
       onChange: this.handleChange,
     };
-    const redirect = this.state.selected ? (
-      <Redirect to={`/movies/${this.state.selected.id}`} />
-    ) : null;
 
     const toRender = (
       <>
-        {redirect}
         <div className="container">
           <div className="field">
             <div className="control has-icons-left">

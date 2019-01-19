@@ -9,14 +9,13 @@ import MovieContainer from '../movie/MovieContainer';
 // Explanation here :https://stackoverflow.com/questions/48796869/react-router-url-is-changed-component-not-re-rendered
 const Main = () => (
   <Fragment>
-    <Switch>
-      <Route exact path="/" component={HomeContainer} />
-      <Route
-        path="/movies/:id"
-        // component={props => <MovieContainer {...props} />} => Normalement c'est ca qu il faudrait utiliser...
-        render={props => <MovieContainer {...props} />}
-      />
-    </Switch>
+    <Route exact path="/" component={HomeContainer} />
+    <Route
+      path="/movies/:id"
+      render={props => (
+        <MovieContainer key={props.match.params.id} {...props} /> // Here, key is fundamental because without it there wouldn't be any reload of MovieContainer when url changes !! See here : https://stackoverflow.com/questions/50667609/react-router-component-not-updating-on-url-search-param-change
+      )}
+    />
   </Fragment>
 );
 export default Main;
