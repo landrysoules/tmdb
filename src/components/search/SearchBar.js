@@ -79,7 +79,7 @@ class SearchBar extends Component {
 
   suggestionSelected(event, config) {
     console.debug('suggestionSelected', config.suggestion);
-    this.setState({ selected: config.suggestion }, function() {
+    this.setState({ selected: config.suggestion, value: '' }, function() {
       this.props.history.push(`/movies/${this.state.selected.id}`);
     });
   }
