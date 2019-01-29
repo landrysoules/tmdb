@@ -148,8 +148,9 @@ class SearchBar extends Component {
 
   handleChange(event, config) {
     console.debug('Char saisi', config.newValue);
-    this.setState({ value: config.newValue });
+
     if (config.newValue) {
+      this.setState({ value: config.newValue });
       this.getResults(config.newValue);
     }
   }
