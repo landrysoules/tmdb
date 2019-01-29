@@ -16,27 +16,32 @@ const FrontPuzzle = ({ movies, series }) => {
           >
             <div className="puzzle">
               <div className="image-container">
-                <div className="image-text">{series[0].name}</div>
-                <img
-                  src={`${largeImageUrl}${series[0].backdrop_path}`}
-                  alt="placeholder"
-                  width="500px"
-                />
+                <Link to={`/tv/${series[0].id}`}>
+                  <div className="image-text">{series[0].name}</div>
+                  <img
+                    src={`${largeImageUrl}${series[0].backdrop_path}`}
+                    alt="placeholder"
+                    width="500px"
+                  />
+                </Link>
               </div>
               <div className="image-container">
-                <div className="image-text-left">{series[1].name}</div>
-
-                <img
-                  src={`${smallImageUrl}${series[1].backdrop_path}`}
-                  alt="placeholder"
-                  width="250px"
-                />
-                <div className="image-text-right">{series[2].name}</div>
-                <img
-                  src={`${smallImageUrl}${series[2].backdrop_path}`}
-                  alt="placeholder"
-                  width="250px"
-                />
+                <Link to={`/tv/${series[1].id}`}>
+                  <div className="image-text-left">{series[1].name}</div>
+                  <img
+                    src={`${smallImageUrl}${series[1].backdrop_path}`}
+                    alt="placeholder"
+                    width="250px"
+                  />
+                </Link>
+                <Link to={`/tv/${series[2].id}`}>
+                  <div className="image-text-right">{series[2].name}</div>
+                  <img
+                    src={`${smallImageUrl}${series[2].backdrop_path}`}
+                    alt="placeholder"
+                    width="250px"
+                  />
+                </Link>
               </div>
             </div>
             <div className="puzzle">
