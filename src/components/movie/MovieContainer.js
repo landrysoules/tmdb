@@ -1,6 +1,6 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchMovie, fetchCredits } from '../../services/ApiService';
-import TitleBanner from '../movie/TitleBanner';
+import Movie from './Movie';
 
 // class MovieContainer extends Component {
 //   constructor(props) {
@@ -67,8 +67,9 @@ const MovieContainer = props => {
     },
     [] // Highly important, without [], fetch would execute forever !!
   );
-
-  return <TitleBanner movie={movie} credits={credits} />;
+  console.debug('Movie container !!', credits);
+  if (movie && credits.cast) return <Movie movie={movie} credits={credits} />;
+  return null;
 };
 
 export default MovieContainer;

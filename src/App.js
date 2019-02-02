@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MainLayout from './components/layout/MainLayout';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -12,5 +12,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
