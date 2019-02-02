@@ -39,6 +39,10 @@ const fetchTVCredits = id => {
   );
 };
 
+const fetchConfig = () => {
+  return axios.get(`${TMDB_URL}configuration?api_key=${API_KEY}`);
+};
+
 export {
   fetchPlayingNowMovies,
   fetchPlayingNowSeries,
@@ -46,4 +50,5 @@ export {
   fetchTV,
   fetchCredits,
   fetchTVCredits,
+  fetchConfig,
 };

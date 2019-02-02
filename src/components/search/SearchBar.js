@@ -87,6 +87,7 @@ class SearchBar extends Component {
           break;
         case 'person':
           path = 'person';
+          break;
         default:
           break;
       }
@@ -146,12 +147,12 @@ class SearchBar extends Component {
     return null;
   }
 
-  handleChange(event, config) {
-    console.debug('Char saisi', config.newValue);
-
-    if (config.newValue) {
-      this.setState({ value: config.newValue });
-      this.getResults(config.newValue);
+  handleChange(event, { newValue }) {
+    console.debug('Char saisi', newValue);
+    // Avoid issues when using kb arrows in search results (when pressing arrow, new value is undefined , and we don't do anything then)
+    if (newValue !== undefined) {
+      this.setState({ value: newValue });
+      this.getResults(newValue);
     }
   }
 
