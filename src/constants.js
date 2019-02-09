@@ -1,3 +1,4 @@
+//@flow
 const URL = {
   IMAGES: 'https://image.tmdb.org/t/p/',
 };

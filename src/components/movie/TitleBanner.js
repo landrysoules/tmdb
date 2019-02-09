@@ -1,12 +1,21 @@
+// @flow
 import React from 'react';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Style from 'style-it';
 import { Helmet } from 'react-helmet';
+import { Movie as MovieModel } from '../../models/Movie';
+import { Credits } from '../../models/Credits';
 
 import './TitleBanner.css';
 
-const TitleBanner = ({ movie, credits }) => {
+const TitleBanner = ({
+  movie,
+  credits,
+}: {
+  movie: MovieModel,
+  credits: Credits,
+}) => {
   console.debug('movie', movie);
   console.debug('credits', credits);
   const style = {

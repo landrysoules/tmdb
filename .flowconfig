@@ -1,11 +1,15 @@
 [ignore]
+.*/node_modules/.*
 
 [include]
 
 [libs]
+/flow-typed/npm
 
 [lints]
+all=warn
 
 [options]
+include_warnings=true
 
 [strict]

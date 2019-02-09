@@ -1,11 +1,14 @@
+// @flow
 import React from 'react';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Style from 'style-it';
+import { Series } from '../../models/Series';
+import { Credits } from '../../models/Credits';
 
 import './TitleBanner.css';
 
-const TitleBanner = ({ tv, credits }) => {
+const TitleBanner = ({ tv, credits }: { tv: Series, credits: Credits }) => {
   console.debug('tv', tv);
   console.debug('credits', credits);
   const style = {

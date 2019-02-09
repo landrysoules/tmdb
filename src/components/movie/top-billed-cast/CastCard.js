@@ -1,7 +1,9 @@
+//@flow
 import React from 'react';
 import { URL, IMAGE_SIZE } from '../../../constants';
+import { Person } from '../../../models/Person';
 
-const CastCard = ({ cast }) => {
+const CastCard = ({ cast }: { cast: Person }) => {
   return (
     <div className="card">
       <div className="card-image">

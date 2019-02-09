@@ -1,8 +1,17 @@
+// @flow
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './FrontPuzzle.css';
+import { Movie } from '../../models/Movie';
+import { Series } from '../../models/Series';
 
-const FrontPuzzle = ({ movies, series }) => {
+const FrontPuzzle = ({
+  movies,
+  series,
+}: {
+  movies: Movie[],
+  series: Series[],
+}) => {
   const largeImageUrl = 'https://image.tmdb.org/t/p/w500/';
   const smallImageUrl = 'https://image.tmdb.org/t/p/w300/';
   return (
