@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './FrontPuzzle.css';
-
-const FrontPuzzle = ({ movies, series }) => {
+import {Movie} from '../../models/Movie';
+import {Serie} from '../../models/Serie';
+export interface Props{
+  movies: Movie[];
+  series:Serie[];
+}
+const FrontPuzzle = ( {movies, series }:Props) => {
   const largeImageUrl = 'https://image.tmdb.org/t/p/w500/';
   const smallImageUrl = 'https://image.tmdb.org/t/p/w300/';
   return (

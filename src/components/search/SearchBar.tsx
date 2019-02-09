@@ -10,14 +10,22 @@ import { faTv } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Autosuggest from 'react-autosuggest';
 
-class SearchBar extends Component {
-  constructor(props) {
+interface SearchBarProps {}
+
+interface SearchBarState {
+  value: string;
+  suggestions: string[];
+  selected: any;
+}
+
+class SearchBar extends Component<SearchBarProps, SearchBarState> {
+  constructor(props: SearchBarProps) {
     super(props);
     console.warn('SearchBar props: ', props);
-    this.state = {
-      value: '',
-      suggestions: [],
-    };
+    // this.state = {
+    //   value: '',
+    //   suggestions: [],
+    // };
 
     this.handleChange = this.handleChange.bind(this); // FIXME: Check if this is needed
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(
@@ -35,12 +43,12 @@ class SearchBar extends Component {
     return { backspaceRemoves: true, multi: true, creatable: false };
   }
 
-  getSuggestionValue(suggestion) {
+  getSuggestionValue(suggestion: any) {
     return suggestion.value;
   }
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
-  getSuggestions(value) {
+  getSuggestions(value: any) {
     console.debug('valuetrim', value);
     const inputValue = value.value.trim().toLowerCase();
     const inputLength = inputValue.length;
@@ -54,7 +62,7 @@ class SearchBar extends Component {
   //  getSuggestionValue ( suggestion  suggestion.name;
 
   // Use your imagination to render suggestions.
-  renderSuggestion(suggestion) {
+  renderSuggestion(suggestion: any) {
     let displayedSuggestion = '';
     const icon = this.getIcon(suggestion.media_type);
     switch (suggestion.media_type) {
@@ -77,9 +85,9 @@ class SearchBar extends Component {
     );
   }
 
-  suggestionSelected(event, config) {
+  suggestionSelected(event: any, config: any) {
     console.debug('suggestionSelected', config.suggestion);
-    this.setState({ selected: config.suggestion, value: '' }, function() {
+    this.setState({ selected: config.suggestion, value: '' }, function(this:SearchBar) {
       let path = 'movies';
       switch (config.suggestion.media_type) {
         case 'tv':
@@ -95,7 +103,7 @@ class SearchBar extends Component {
     });
   }
 
-  getIcon(type) {
+  getIcon(type: string) {
     switch (type) {
       case 'movie':
         return <FontAwesomeIcon icon={faFilm} />;
@@ -111,7 +119,7 @@ class SearchBar extends Component {
 
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
-  onSuggestionsFetchRequested(value) {
+  onSuggestionsFetchRequested(value: string) {
     this.getSuggestions(value);
   }
 
@@ -122,7 +130,7 @@ class SearchBar extends Component {
     });
   }
 
-  getResults(input) {
+  getResults(input: any) {
     //TODO: move this to API Service
     if (!input) {
       return Promise.resolve({ options: [] });
@@ -147,7 +155,7 @@ class SearchBar extends Component {
     return null;
   }
 
-  handleChange(event, { newValue }) {
+  handleChange(event: any, { newValue }: any) {
     console.debug('Char saisi', newValue);
     // Avoid issues when using kb arrows in search results (when pressing arrow, new value is undefined , and we don't do anything then)
     if (newValue !== undefined) {
@@ -192,4 +200,4 @@ class SearchBar extends Component {
 // (since not in a Route). Great explanation here :
 // https://tylermcginnis.com/react-router-programmatically-navigate/ I need it
 // to change the route to /movie/xxx
-export default withRouter(SearchBar);
+export default withRouter<SearchBarProps>(SearchBar);

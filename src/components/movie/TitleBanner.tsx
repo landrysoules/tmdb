@@ -5,8 +5,15 @@ import Style from 'style-it';
 import { Helmet } from 'react-helmet';
 
 import './TitleBanner.css';
+import {Movie } from '../../models/Movie';
+import { Credits } from '../../models/Credits';
 
-const TitleBanner = ({ movie, credits }) => {
+interface TitleBannerProps  {
+  movie: Movie;
+  credits: Credits
+}
+
+const TitleBanner = ({ movie, credits }:TitleBannerProps) => {
   console.debug('movie', movie);
   console.debug('credits', credits);
   const style = {

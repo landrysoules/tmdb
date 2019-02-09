@@ -1,7 +1,10 @@
 import React from 'react';
 import CastCard from './CastCard';
-
-const TopBilledCast = ({ cast }) => {
+import { Person } from '../../../models/Person';
+interface TopBilledCastProps{
+  cast: Person[];
+}
+const TopBilledCast = ({ cast }:TopBilledCastProps) => {
   const cards = cast.map(item => {
     return (
       <div className="column" style={{ display: 'flex' }}>
