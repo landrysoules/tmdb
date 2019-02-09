@@ -1,6 +1,6 @@
 import React from 'react';
 import TitleBanner from './TitleBanner';
-import TopBilledCast from './top-billed-cast/TopBilledCast';
+import TopBilledCast from '../cast/top-billed-cast/TopBilledCast';
 
 const Movie = ({ movie, credits }) => {
   console.debug('Movie!!', credits);
