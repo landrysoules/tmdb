@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import HomeContainer from '../home/HomeContainer';
 import MovieContainer from '../movie/MovieContainer';
 import TVContainer from '../tv/TVContainer';
+import PersonContainer from '../person/PersonContainer';
 
 // Route components have to be defined in a weird way : eg component={props => <MovieContainer {...props} />}
 // instead of component={MovieContainer}
@@ -20,6 +21,12 @@ const Main = () => (
     <Route
       path="/tv/:id"
       render={props => <TVContainer key={props.match.params.id} {...props} />}
+    />
+    <Route
+      path="/person/:id"
+      render={props => (
+        <PersonContainer key={props.match.params.id} {...props} />
+      )}
     />
   </Fragment>
 );

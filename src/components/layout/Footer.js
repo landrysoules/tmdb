@@ -3,16 +3,16 @@ import './Footer.css';
 import logo from './tmdb-logo.svg';
 
 const Footer = () => (
-    <footer className="footer bottom-background">
-        <div className="content">
-            <div className="columns">
-                <div className="column is-one-quarter" />
-                <div className="column">
-                    <img id="logo" src={logo} alt="" style={{ marginTop: '5em' }} />
-                </div>
-            </div>
+  <footer className="footer bottom-background">
+    <div className="content">
+      <div className="columns">
+        <div className="column is-one-quarter" />
+        <div className="column">
+          <img id="logo" src={logo} alt="" style={{ marginTop: '5em' }} />
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
 );
 
 export default Footer;

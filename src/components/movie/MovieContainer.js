@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchMovie, fetchCredits } from '../../services/ApiService';
 import Movie from './Movie';
+import _ from 'lodash/core';
 
 // class MovieContainer extends Component {
 //   constructor(props) {
@@ -68,7 +69,8 @@ const MovieContainer = props => {
     [] // Highly important, without [], fetch would execute forever !!
   );
   console.debug('Movie container !!', credits);
-  if (movie && credits.cast) return <Movie movie={movie} credits={credits} />;
+  if (!_.isEmpty(movie) && !_.isEmpty(credits))
+    return <Movie movie={movie} credits={credits} />;
   return null;
 };
 

@@ -1,11 +1,14 @@
 import React from 'react';
 import CastCard from './CastCard';
+import { Link } from 'react-router-dom';
 
 const TopBilledCast = ({ cast }) => {
   const cards = cast.map(item => {
     return (
       <div className="column" style={{ display: 'flex' }}>
-        <CastCard cast={item} />
+        <Link to={`/person/${item.id}`}>
+          <CastCard cast={item} />
+        </Link>
       </div>
     );
   });

@@ -39,6 +39,12 @@ const fetchTVCredits = id => {
   );
 };
 
+const fetchPerson = id => {
+  return axios.get(
+    `${TMDB_URL}person/${id}?api_key=${API_KEY}&language=en-US&page=1`
+  );
+};
+
 const fetchConfig = () => {
   return axios.get(`${TMDB_URL}configuration?api_key=${API_KEY}`);
 };
@@ -51,4 +57,5 @@ export {
   fetchCredits,
   fetchTVCredits,
   fetchConfig,
+  fetchPerson,
 };
