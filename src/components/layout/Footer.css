@@ -1,0 +1,15 @@
+.bottom-background {
+    background-color: #061d25;
+    background-image: url("./footer-bg.jpg");
+    background-size: cover;
+    height: 60vh;
+}
+
+#logo {
+    width: 100px;
+    height: 100px;
+}
+
+.center-row {
+    margin-top: 100px;
+}
