@@ -6,7 +6,7 @@ const TopBilledCast = ({ cast }) => {
   const cards = cast.map(item => {
     return (
       <div className="column" style={{ display: 'flex' }}>
-        <Link to={`/person/${item.id}`}>
+        <Link to={`/person/${item.id}`} style={{ display: 'flex' }}>
           <CastCard cast={item} />
         </Link>
       </div>

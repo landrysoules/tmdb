@@ -16,7 +16,7 @@ const KnownForContainer = ({ personId }) => {
   }, []);
 
   if (!_.isEmpty(combinedCredits))
-    return <KnownFor combinedCredits={combinedCredits.slice(0,8)} />;
+    return <KnownFor credits={combinedCredits.cast.slice(0, 8)} />;
   return null;
 };
 export default KnownForContainer;

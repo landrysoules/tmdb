@@ -1,6 +1,7 @@
 import React from 'react';
 import { URL, IMAGE_SIZE } from '../../constants';
 import './Person.css';
+import KnownForContainer from './KnownForContainer';
 
 const Person = ({ person }) => {
   return (
@@ -32,6 +33,7 @@ const Person = ({ person }) => {
               <h2 className="subtitle">Biography</h2>
             </div>
             <div>{person.biography}</div>
+            <KnownForContainer personId={person.id} />
           </div>
         </div>
       </div>
