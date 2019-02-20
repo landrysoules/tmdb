@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPerson } from '../../services/ApiService';
+import { fetchPerson, fetchCombinedCredits } from '../../services/ApiService';
 import Person from './Person';
 import _ from 'lodash/core';
 
 const PersonContainer = props => {
   const [person, setPerson] = useState({});
+
   useEffect(() => {
     fetchPerson(props.match.params.id)
       .then(response => {
