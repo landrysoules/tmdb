@@ -4,6 +4,8 @@ import KnownFor from './KnownFor';
 import _ from 'lodash/core';
 import * as R from 'ramda';
 
+const { sort, filter, descend, prop } = R;
+
 const KnownForContainer = ({ personId }) => {
   const [combinedCredits, setCombinedCredits] = useState({});
   useEffect(() => {
@@ -18,10 +20,14 @@ const KnownForContainer = ({ personId }) => {
 
   if (!_.isEmpty(combinedCredits)) {
     console.warn('ccredits', combinedCredits.cast);
-    // FIXME: Remove tv where episode count < 2
-    const sortByPopularity = R.sort(R.descend(R.prop('popularity')));
+    // FIXME: Remove tv where episode count < 2 or better : character !== "" or even better : genre_id
+    const sortByPopularity = sort(descend(prop('popularity')));
+    const filterTalkShows = e => e.character !== '';
     // const sortedCredits = _.orderBy(combinedCredits.cast, 'popularity', 'desc');
-    const sortedCredits = sortByPopularity(combinedCredits.cast);
+    const sortedCredits = filter(
+      filterTalkShows,
+      sortByPopularity(combinedCredits.cast)
+    );
     console.warn('sortedCredits', sortedCredits);
     return <KnownFor credits={sortedCredits.slice(0, 8)} />;
   }

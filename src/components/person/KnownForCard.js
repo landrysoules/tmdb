@@ -1,9 +1,11 @@
 import React from 'react';
 import { IMAGE_SIZE, URL } from '../../constants';
+import { Link } from 'react-router-dom';
 
-const KnownForCard = ({ credit }) => {
+function KnownForCard({ credit }) {
+  const mediaCategoryPath = credit.media_type === 'tv' ? 'tv' : 'movies';
   return (
-    <>
+    <Link to={`/${mediaCategoryPath}/${credit.id}`}>
       <figure className="image" height="225px" width="150px">
         <img
           alt={credit.original_title}
@@ -11,8 +13,8 @@ const KnownForCard = ({ credit }) => {
         />
       </figure>
       <div>{credit.original_title || credit.original_name}</div>
-    </>
+    </Link>
   );
-};
+}
 
 export default KnownForCard;
