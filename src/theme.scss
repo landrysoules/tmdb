@@ -5,5 +5,6 @@
 // We always want to have a container of 960px width, as in the original tmdb site
 $widescreen-enabled: false;
 $fullhd-enabled: false;
+$desktop: 1000px + (2 * $gap);
 
 @import 'bulma/bulma.sass';

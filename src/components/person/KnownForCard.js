@@ -1,11 +1,13 @@
 import React from 'react';
 import { IMAGE_SIZE, URL } from '../../constants';
+import './KnownForCard.css';
 
 const KnownForCard = ({ credit }) => {
   return (
     <>
-      <figure className="image" height="225px" width="150px">
+      <figure className="image">
         <img
+          className="card-image"
           alt={credit.original_title}
           src={`${URL.IMAGES}${IMAGE_SIZE.THUMB}/${credit.poster_path}`}
         />
