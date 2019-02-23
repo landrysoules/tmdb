@@ -2,4 +2,8 @@
 
 // your customization as described in the Bulma docs
 
+// We always want to have a container of 960px width, as in the original tmdb site
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
 @import 'bulma/bulma.sass';
