@@ -9,6 +9,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faTv } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Autosuggest from 'react-autosuggest';
+import Sticky from 'react-stickynode';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -164,8 +165,8 @@ class SearchBar extends Component {
     };
 
     const toRender = (
-      <>
-        <div className="container">
+      <Sticky top={50} innerZ={99}>
+        <div id="search-bar" className="container">
           <div className="field">
             <div className="control has-icons-left">
               <Autosuggest
@@ -183,7 +184,7 @@ class SearchBar extends Component {
             </div>
           </div>
         </div>
-      </>
+      </Sticky>
     );
     return toRender;
   }

@@ -3,7 +3,7 @@ import logo from './tmdb-logo.svg';
 import './NavBar.css';
 
 const NavBar = () => (
-  <nav className="navbar is-spaced is-black">
+  <nav className="navbar is-fixed-top is-spaced is-black" id="navbar">
     <div className="container">
       <div className="navbar-brand">
         <a href="/">
