@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { fetchCombinedCredits } from '../../services/ApiService';
 import KnownFor from './KnownFor';
-import _ from 'lodash/core';
 import * as R from 'ramda';
+
+const { isEmpty, sort, descend, prop, uniq } = R;
 
 const KnownForContainer = ({ personId }) => {
   const [combinedCredits, setCombinedCredits] = useState({});
@@ -16,11 +17,10 @@ const KnownForContainer = ({ personId }) => {
       });
   }, []);
 
-  if (!_.isEmpty(combinedCredits)) {
+  if (!isEmpty(combinedCredits)) {
     console.warn('ccredits', combinedCredits.cast);
     // FIXME: Remove tv where episode count < 2
-    const sortByPopularity = R.sort(R.descend(R.prop('popularity')));
-    // const sortedCredits = _.orderBy(combinedCredits.cast, 'popularity', 'desc');
+    const sortByPopularity = sort(descend(prop(uniq(prop('popularity')))));
     const sortedCredits = sortByPopularity(combinedCredits.cast);
     console.warn('sortedCredits', sortedCredits);
     return <KnownFor credits={sortedCredits.slice(0, 8)} />;
