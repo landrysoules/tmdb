@@ -84,3 +84,10 @@ input:focus {
 .suggestion-title {
     margin-left: 5px;
 }
+
+#search-bar {
+    padding-top: 70px;
+    /* position: -webkit-sticky;
+    position: sticky;
+    top: 0; */
+}

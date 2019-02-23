@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 class App extends Component {
   render() {
+    document.body.classList.add('has-navbar-fixed-top');
     return (
       <Router>
         <MainLayout />
